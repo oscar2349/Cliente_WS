@@ -46,7 +46,7 @@ public class myservlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             // ==================si se quiere redireccionar a otra vista======================
-            //request.getSession().setAttribute("servletMsg", "Realizado con Exito");
+            //request.getSession().setAttribute("servletMsg", "Realizado con Exito");//o pasar un objeto
             //response.sendRedirect("newjsp.jsp");
         }
 
