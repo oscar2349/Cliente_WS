@@ -4,6 +4,7 @@ import Services.SumarNumeros_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,12 +40,16 @@ public class myservlet extends HttpServlet {
             out.println("<body>");
             int n1 = Integer.parseInt(request.getParameter("Numero1"));
             int n2 = Integer.parseInt(request.getParameter("Numero2"));
-            out.println("<h4>La Suma de los Numero indicados es: " + sumar(n1,n2) + "</h4>");
-            out.println("<h4>La Resta de los Numero indicados es: " + resta(n1, n2)+ "</h4>");
-            out.println("<h4>La Multiplicacion de los Numero indicados es: " + multiplicacion(n1, n2)+ "</h4>");
+            out.println("<h4>La Suma de los Numero indicados es: " + sumar(n1, n2) + "</h4>");
+            out.println("<h4>La Resta de los Numero indicados es: " + resta(n1, n2) + "</h4>");
+            out.println("<h4>La Multiplicacion de los Numero indicados es: " + multiplicacion(n1, n2) + "</h4>");
             out.println("</body>");
             out.println("</html>");
+            // ==================si se quiere redireccionar a otra vista======================
+            //request.getSession().setAttribute("servletMsg", "Realizado con Exito");
+            //response.sendRedirect("newjsp.jsp");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -60,8 +65,7 @@ public class myservlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        LOG.info("Se ingreso al metodo GET");
+
     }
     private static final Logger LOG = Logger.getLogger(myservlet.class.getName());
 
@@ -76,19 +80,9 @@ public class myservlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         //processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
     private int sumar(int numero1, int numero2) {
 
@@ -109,7 +103,5 @@ public class myservlet extends HttpServlet {
         Services.SumarNumeros port = service.getSumarNumerosPort();
         return port.multiplicacion(numero1, numero2);
     }
-    
-    
 
 }
